@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/gbu",
+    "public": "dist/gbutask",
     "ignore": [
       "firebase.json",
       "**/.*",
