@@ -1,0 +1,84 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Создание задачи</h1>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}"
+  >
+    <label for="title">Задача:</label>
+    <input id="title" type="text" formControlName="title">
+    <div
+      *ngIf="form.get('title').touched && form.get('title').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('title').errors.required">
+        Краткое описание задачи
+      </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <p><select name="status" formControlName="status">
+      <option selected value="Новая">Новая</option>
+      <option value="В работе">В работе</option>
+      <option value="Выполнена">Выполнена</option>
+    </select></p>
+  </div>
+
+  <div class="form-control">
+    <label>Описание задачи:</label>
+    <quill-editor formControlName="text"></quill-editor>
+  </div>
+  <div
+          class="form-control"
+          [ngClass]="{invalid: form.get('workspace').touched && form.get('workspace').invalid}"
+  >
+    <label for="workspace">Номер Workspace:</label>
+    <input id="workspace" type="text" formControlName="workspace">
+    <div
+            *ngIf="form.get('workspace').touched && form.get('workspace').invalid"
+            class="validation"
+    >
+      <small *ngIf="form.get('workspace').errors.required">
+        Введите номер задачи в workspace
+      </small>
+    </div>
+  </div>
+
+  <div
+          class="form-control"
+          [ngClass]="{invalid: form.get('cds').touched && form.get('cds').invalid}"
+  >
+    <label for="cds">Номер ЦДС:</label>
+    <input id="cds" type="text" formControlName="cds">
+    <div
+            *ngIf="form.get('cds').touched && form.get('cds').invalid"
+            class="validation"
+    >
+      <small *ngIf="form.get('cds').errors.required">
+        Введите номер задачи в ЦДС
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('author').touched && form.get('author').invalid}"
+  >
+    <label for="author">Автор задачи:</label>
+    <input id="author" type="text" formControlName="author">
+    <div
+      *ngIf="form.get('author').touched && form.get('author').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('author').errors.required">
+        Введите автора задачи
+      </small>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+  >Создать</button>
+</form>

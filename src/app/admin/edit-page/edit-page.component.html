@@ -1,0 +1,48 @@
+<div *ngIf="form; else loading">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}"
+    >
+      <label for="title">Название задачи:</label>
+      <input id="title" type="text" formControlName="title">
+      <div
+        *ngIf="form.get('title').touched && form.get('title').invalid"
+        class="validation"
+      >
+        <small *ngIf="form.get('title').errors.required">
+          Введите название задачи
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <quill-editor formControlName="text"></quill-editor>
+    </div>
+    <div class="form-control">
+      <label for="status">Статус:</label>
+      <p><select name="status" formControlName="status">
+        <option selected value="Новая">Новая</option>
+        <option value="В работе">В работе</option>
+        <option value="Выполнена">Выполнена</option>
+      </select></p>
+    </div>
+    <div class="form-control">
+      <label for="workspace">Номер Workspace:</label>
+      <input id="workspace" type="text" formControlName="workspace">
+    </div>
+    <div class="form-control">
+      <label for="cds">Номер ЦДС:</label>
+      <input id="cds" type="text" formControlName="cds">
+    </div>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="form.invalid || submitted"
+    >Обновить</button>
+  </form>
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Идет загрузка...</p>
+</ng-template>
